@@ -39,6 +39,7 @@ function App() {
               path="/profile"
               element={isConnected ? <Profile /> : <Navigate to="/login" />}
             />
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </main>
         <Footer />
