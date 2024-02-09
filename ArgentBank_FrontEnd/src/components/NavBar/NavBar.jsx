@@ -5,6 +5,8 @@ import { logout } from '../../redux/actions/auth.actions'
 
 function NavBar() {
   const isConnected = useSelector((state) => state.auth.token)
+  const firstname = useSelector((state) => state.user.userData.firstname)
+  console.log(firstname)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -29,16 +31,20 @@ function NavBar() {
 
         {isConnected ? (
           <div className="connected">
+            <Link to="/profile" className="main-nav-item">
+              <i className="fa-solid  fa-circle-user connected_icon" />
+              <p className="connected_text">{firstname}</p>
+            </Link>
             <Link className="main-nav-item" to="/" onClick={logoutHandler}>
               <i className="fa-solid fa-arrow-right-from-bracket connected_icon"></i>
-              <p>Logout</p>
+              <p>Sign out</p>
             </Link>
           </div>
         ) : (
           <div className="not-connected">
             <Link className="main-nav-item" to="/login">
               <i className="fa-solid fa-user-circle "></i>
-              <p>Login</p>
+              <p>Sign In</p>
             </Link>
           </div>
         )}
