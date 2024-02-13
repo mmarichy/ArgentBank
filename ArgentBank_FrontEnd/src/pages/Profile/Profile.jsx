@@ -1,8 +1,8 @@
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
 import { User } from '../../components/User/User'
 import { Account } from '../../components/Account/Account'
 import AccountData from '../../data/AccountData.json'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
 import { userProfile } from '../../redux/actions/user.actions'
 
 function Profile() {
@@ -26,10 +26,6 @@ function Profile() {
           if (response.ok) {
             const data = await response.json()
             const userData = {
-              createdAt: data.body.createdAt,
-              updatedAt: data.body.updatedAt,
-              id: data.body.id,
-              email: data.body.email,
               firstname: data.body.firstName,
               lastname: data.body.lastName,
               username: data.body.userName,
