@@ -8,7 +8,7 @@ export function User() {
   const userData = useSelector((state) => state.user.userData)
   // console.log(userData)
   const [editSection, setEditSection] = useState(true)
-  const [userName, setUserName] = useState('')
+  const [userName, setUserName] = useState(userData.username)
 
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -16,6 +16,7 @@ export function User() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    console.log(userName)
     if (!isValideName(userName)) {
       setErrorMessage('Invalid username')
       return
@@ -37,7 +38,7 @@ export function User() {
       )
       if (response.ok) {
         const data = await response.json()
-        const username = data.body.username
+        const username = data.body.userName
         dispatch(updateUsername(username))
         setEditSection(!editSection)
       } else {
