@@ -7,3 +7,8 @@ export const isValidPassword = (password) => {
   const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$/
   return regex.test(password)
 }
+
+export const isValideName = (name) => {
+  const regex = /^[a-zA-Z0-6]*$/
+  return regex.test(name)
+}
