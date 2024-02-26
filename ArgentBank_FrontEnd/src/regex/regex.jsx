@@ -9,6 +9,9 @@ export const isValidPassword = (password) => {
 }
 
 export const isValideName = (name) => {
+  if (name.length === 0) {
+    return false
+  }
   const regex = /^[a-zA-Z0-6]*$/
   return regex.test(name)
 }

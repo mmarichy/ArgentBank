@@ -104,7 +104,7 @@ paths:
 
 
   /user/account:
-    post: 
+    get: 
       tags:
         - Accounts and Transactions Module
       summary: All accounts
@@ -125,7 +125,7 @@ paths:
 
 
   /account/{accountID}/transactions:
-    post:
+    get:
       tags:
         - Accounts and Transactions Module
       summary: Account transactions
@@ -185,41 +185,7 @@ paths:
         '500': 
           description: Internal Servor Error
 
-
   /transactions/{transactionID}/note:
-    post:
-      tags:
-        - Accounts and Transactions Module
-      summary: Add transaction's note
-      description: API for adding a note to a transaction
-      security: 
-        - Bearer: []
-      parameters:
-        - in: path
-          name: transactionID
-          description: ID of a transaction
-          required: true
-          type: string
-        - in: body
-          name: note
-          description: New transaction's note
-          required: true
-          schema: 
-            $ref: '#/definitions/TransactionNote'
-      responses:
-        '200':
-          description: Note added to the transaction successfully
-          schema: 
-            $ref: '#/definitions/TransactionNoteResponse'
-        '401':
-          description: Unauthorized user
-        '404':
-          description: Note not created
-        '500':
-          description: Internal Server Error
-
-
-  /transactions/{transactionID}/note/{noteID}:
     put:
       tags:
         - Accounts and Transactions Module
@@ -231,11 +197,6 @@ paths:
         - in: path
           name: transactionID
           description: ID of a transaction
-          required: true
-          type: string
-        - in: path
-          name: noteID
-          description: ID of a note
           required: true
           type: string
         - in: body
@@ -255,35 +216,6 @@ paths:
           description: Note not modified
         '500':
           description: Internal Server Error
-
-    delete:
-      tags:
-        - Accounts and Transactions Module
-      summary: Delete transaction's note
-      description: API for deleting a note of a transaction
-      security:
-        - Bearer: []
-      parameters:
-        - in: path
-          name: transactionID
-          description: ID of a transaction
-          required: true
-          type: string
-        - in: path
-          name: noteID
-          description: ID of a note
-          required: true
-          type: string
-      responses:
-        '200':
-          description: Note deleted successfully
-        '401':
-          description: Unauthorized user
-        '404':
-          description: Note not deleted
-        '500':
-          description: Internal Server Error
-
 
 securityDefinitions:
   Bearer:
